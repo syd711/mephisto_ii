@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Radio Verwaltung</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+<script src="radio-ui.js"></script>
+<script src="google-ui.js"></script>
+<script src="settings.js"></script>
+<style type="text/css">
+<!--
+.playing { 
+   background-image: url(img/playing.gif); 
+   background-repeat: no-repeat; 
+} 
+-->
+</style>
+</head>
+<body>
+
+
+	<!-- *****************************  Main *****************************************************************************-->
+	<div data-role="page">
+
+		<div data-role="header">
+			<h1>Verwaltung</h1>
+		</div>
+		<!-- /header -->
+
+		<div data-role="content">
+
+			<ul id="listview" data-role="listview" data-inset="true" data-filter="false" data-theme="c">
+				<li><a href="radio_stations.html" onClick="loadStations()" data-prefetch data-icon="star" data-theme="e">
+						Stationen verwalten <span class="ui-li-count ui-btn-up-c ui-btn-corner-all" id="station-count-label">...</span>
+					</a></li>
+				<li><a href="radio_remote.html" data-prefetch onClick="remoteControl('load')">Fernbedienung</a></li>
+				<li><a href="#" data-prefetch onClick="checkGoogleCredentials()">Google Music</a></li>
+			</ul>
+
+		</div>
+		<!-- /content -->
+
+	</div>
+	<!-- ***************************** /Main *****************************************************************************-->
+
+
+
+	<input type="hidden" name="station-id" id="station-id" />
+    <input type="hidden" name="station-test-url" id="station-test-url" />
+    
+    
+
+<script>
+	loadStations();
+	applyVolumeSliderListener();
+</script>
+</body>
+</html>
