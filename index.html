@@ -1,49 +1,168 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Mephisto II : Building an internet radio with the raspberry pi" />
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <title>Mephisto II</title>
+  <meta name="description" content="Building an internet radio with the Raspberry Pi">
 
-    <title>Mephisto II</title>
-  </head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <body>
+</head>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/syd711/mephisto_ii">View on GitHub</a>
+<body>
 
-          <h1 id="project_title">Mephisto II</h1>
-          <h2 id="project_tagline">Building an internet radio with the raspberry pi</h2>
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Mephisto II</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Building an internet radio with the Raspberry Pi</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/syd711/mephisto_ii/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/syd711/mephisto_ii/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/syd711/mephisto_ii" class="code">View Mephisto II on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>Motivation</h1>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/syd711/mephisto_ii/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/syd711/mephisto_ii/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
+<p>Inspired by <a href="http://mightyohm.com/blog/2008/10/building-a-wifi-radio-part-1-introduction/">mightyohms internet radio</a> I decided to give this a try to. 
+So I build my first radio with an <strong>Asus WL520-GU router</strong> and an <a href="http://www.instructables.com/id/Standalone-WiFi-Radio-Control-Panel-Arduino-Power/">Arduino Ethernet as UI controller</a>. The project has been so much fun that
+I decided to build another one, but with a cheaper and more efficient hardware by choosing the <strong>Raspberry Pi</strong>.</p>
+
+<h1>The Name</h1>
+
+<p>Why Mephisto II? Well, my last name means "fist" in German (Faust) and this is the second radio I build, so...</p>
+
+<h1>The Radio Box</h1>
+
+<p>What? Wait? Why starting with the box? Well, I learned from my first project that I neither have the tools nor the room to build a case on my own. So I decided to first lookup a possible case for the radion and that 
+build the radio depending on the design of the choosen case. The radio is a gift for a woman who's got an old-fashioned furniture style, so I bought a radio case from 1932 from ebay and started "hacking".</p>
+
+<p><img src="http://www.paderpoint.net/radio/tn_IMG_6583.JPG" alt="Box 1"><img src="http://www.paderpoint.net/radio/tn_IMG_6584.JPG" alt="Box 2"></p>
+
+<h1>The Software</h1>
+
+<p>With the power of the Raspberry Pi I decided to build a web-interface the user can configure the stations with. Since I already fiddled around with the awesome <strong><a href="http://learn.adafruit.com/webide/overview">Adafruit WebIDE</a></strong>, I decided to use <strong>python</strong> for the REST service 
+and <strong><a href="http://jquerymobile.com/demos/1.3.0/">jquery-mobile</a></strong> for a responsive web UI. I've never programmed Python before, thinking everything is better than PHP, but realized that python is a bit of a pain too. But building the UI using the <strong><a href="http://bottlepy.org/docs/dev/index.html">bottle</a></strong> 
+ REST framework was fun and I really achieved the desired results in short time. So I decided to give the radio some "extras". I stumbled over the <strong><a href="https://github.com/simon-weber/Unofficial-Google-Music-API">gmusic-python API on github</a></strong> and decided that it would be nice if the
+radio could play <strong>all my mp3</strong> as well. So I build an UI for that too. You can see some screenshots below. The UI is in German, but I think you get the idea.</p>
+
+<p><img src="http://www.paderpoint.net/radio/tn_2013-05-24%2019_29_17-Verwaltung.png" alt="Radio Control"><img src="http://www.paderpoint.net/radio/tn_2013-05-24%2019_30_35-Radio%20Verwaltung.png" alt="Radio Control"><img src="http://www.paderpoint.net/radio/tn_2013-05-24%2019_30_04-Google%20Music.png" alt="GMusic Control"></p>
+
+<h3>Problems, Solutions and Open Issues (Software)</h3>
+
+<p>Because this was ...</p>
+
+<ul>
+<li>my first Raspberry Pi project</li>
+<li>the first time I programmed Python</li>
+<li>the first time I used jquery-mobile (jquery at all) </li>
+<li>and my first project with the Adafruit WebIDE</li>
+</ul><p>I stumbled over some problems. Some of them I could solve, some of them remained unsolved. I want to share my knowledge here (and hopefully get some answers to my questions too). 
+Here is a short overview about the main problems I faced building the software for the radio.</p>
+
+<ul>
+<li>
+<strong>working with the Adafruit WebIDE</strong>: Actual that was no problem at all. I left the IDE enabled in the radio. When the radio boots, the Python scripts are executed right from the workspace which allows me to make minor fixes afterwards.</li>
+<li>
+<strong>performance of the bottle framework</strong>: I did not spent much time googling which framework to use for a Pyton REST service. The bottle framework worked for me, although I soon realized 
+that there are some performance issued using the default webserver, so I installed <strong>cherrypy</strong> and started the service with this server instead: <pre>run(host=SETTING_SERVER_IP, port=SETTING_SERVER_PORT, debug=False, server='cherrypy')</pre>
+</li>
+<li>
+<strong>using mpd for two services</strong>: mpd is used for the playback of the radio stations and also for the Google music support. That means the once I play a song via Google, the REST layer has to clean up the 
+current playlist from the radio stations and add the URL of the mp3 to the list. I mananged that by storing two different playlist that are persisted with the correspondig mpc commands. Once the user leaves the Google menu, 
+the radio playlist is loaded again to ensure that the persisted stations are working again. If a station is selected on the radio, a check is made if the radio playlist is loaded and re-applies the radio playlist to the mpd.
+If the radio was turned off while playing songs from Google, the radio loads the radio playlist during the startup, starting the playback with the first station.</li>
+<li>
+<strong>mpc library</strong>: For some reasons I did not check if python mpc libraries are out there (of course there are). So I implemented a mpc helper class that executes 
+mpc system commands and mpc telnet commands for handling the playlist. There is definitly room for improvements here.</li>
+<li>
+<strong>logging</strong>: I did not care much about logging and used a static helper class for this too. This could have been better too.</li>
+<li>
+<strong>Google music playback</strong>: The main problem here was that the playback URLs of the library are only valid from some restricted time. Therefore loading a complete playlist for an album or an artist was not possible. 
+I fixed the problem by running a separate player thread that only checks if the given song is still playing and if there is a next song that should be play from the current album/artist list. As a result, there is always
+only one song in the playlist. The UI is updated via polling the player thread status every n seconds.</li>
+<li>
+<strong>radio remote control</strong>: The UI supports a remote control for the radio so that the next or previous station can be selected. Maybe it would be better here to let the user choose a station directly.
+Unfortunatly the LEDs for the station status are not updated when the station is changed via remote control.</li>
+<li>
+<strong>radio remote volume control</strong>: In a first version I was able to control the radio volume control via UI with a jquery-mobile slider component. The slider change did result in a <strong>mpc volume</strong> command on the server side. 
+After using an USB sound card, the command did not work anymore and I wasn't able to get it running again. The component is still there, but commented out in the HTML. </li>
+<li>
+<strong>passing correct stream urls to the UI</strong>: The "New Station" dialog contains a test button for new stream URLs. The URLs may work when configuring the playlist on a PC but may not when added to the mpd playlist.
+A nice solution would be to have some a kind of stream repository that is maintained in the outside world so the user only selected his or her radio stations from a list of predefined stations.</li>
+</ul><h1>The Hardware</h1>
+
+<p>Components used:</p>
+
+<ul>
+<li>Raspberry Pi</li>
+<li>Raspberry Pi GPIO Cobbler</li>
+<li>Lepai Mini Hi-Fi HiFi Stereo Audio Amplifier </li>
+<li>USB Hub 4-port</li>
+<li>Visaton BG 20 speaker</li>
+<li>2x 74HC595 8 bit shift register</li>
+<li>USB power adapter for the Raspi</li>
+<li>power adapter for the Lepai Amp</li>
+<li>a relais </li>
+<li>12x LED for the front display</li>
+<li>1x LED as power indicator on the front</li>
+<li>rotary encoder for station selection</li>
+<li>on/off switch</li>
+<li>...and blood, sweat and tears ;)</li>
+</ul><h3>Problems, Solutions and Open Issues (Hardware)</h3>
+
+<ul>
+<li>
+<strong>the Raspberry Pi GPIO ports</strong>: Because of the limited space on the front side, I decided to provide a display where the user can select one of twelve stations. Using 3mm LEDs this was the amount of LEDs 
+that fit into the front hole. The problem was that Raspi does not have that many GPIO ports, so I found <strong><a href="http://bildr.org/2011/02/74hc595/">this</a></strong> awesome article for the <strong>Arduino</strong> that did the trick.</li>
+<li>
+<strong>the Lepai amp</strong>: The amp wasn't the best choice for this project but does what it is intended to do. Problem: the amp produces a constant noise which is pretty annoying. I solved this problem by wiring 
+a 50 Ohm resistor on the speaker to reduce the noise. Does someone has a recommendation for an amp in that price category (14€)? </li>
+<li>
+<strong>the rotary encoder</strong>: <strong>GRRRRRRR - BIGGEST PAIN EVER</strong>. I was able to get the rotary encoder running on an Arduino Uno. So I translated the Arduino code to python and wired it to the Raspi. After fiddling
+around for hours I wasn't able to get the rotary encoder running the same way. I tried the a <a href="https://github.com/guyc/py-gaugette">pythong rotary encoder library</a> on Github but found contradictorily wiring schemes
+for the rotary encoder. I wired the A/B pins to GPIO ports on the Raspi but it only works on one direction. I wasn't able to fix this problem yet and for me, it's still the biggest bug on the radio.</li>
+</ul><h1>Conclusion</h1>
+
+<p>Once again, it was fun to build an internet radio on my own. And I'm looking forward to "make" my next project, even though I don't know yet what it's gonna be. Here are some additional fotos of the build process:</p>
+
+<p><img src="http://www.paderpoint.net/radio/tn_IMG_6616.JPG" alt="Speaker installation"><img src="http://www.paderpoint.net/radio/tn_IMG_6617.JPG" alt="Front Panel Control"><img src="http://www.paderpoint.net/radio/tn_IMG_6618.JPG" alt="Front Panel"><img src="http://www.paderpoint.net/radio/tn_IMG_6619.JPG" alt="Prototyping"><img src="http://www.paderpoint.net/radio/tn_IMG_6620.JPG" alt="Wiring"><img src="http://www.paderpoint.net/radio/tn_IMG_6621.JPG" alt="Wiring"><img src="http://www.paderpoint.net/radio/tn_IMG_6622.JPG" alt="Wiring"><img src="http://www.paderpoint.net/radio/tn_IMG_6623.JPG" alt="Wiring"></p>
+
+<p><img src="http://www.paderpoint.net/radio/tn_2013-05-26%2012.51.00.jpg" alt="Finished Radio"><img src="http://www.paderpoint.net/radio/tn_2013-05-26%2012.51.13.jpg" alt="Finished Radio"><img src="http://www.paderpoint.net/radio/tn_2013-05-26%2012.51.24.jpg" alt="Finished Radio"></p>
+        </article>
+      </div>
     </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/syd711" class="avatar"><img src="https://secure.gravatar.com/avatar/e433842e4a75c8557a4ef29e6a124b6a?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/syd711">syd711</a> maintains <a href="https://github.com/syd711/mephisto_ii">Mephisto II</a></p>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p>abc * </p>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Mephisto II maintained by <a href="https://github.com/syd711">syd711</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/syd711/mephisto_ii/tarball/master" class="tar">tar</a><a href="https://github.com/syd711/mephisto_ii/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
 
-    
-
-  </body>
+  
+</body>
 </html>
