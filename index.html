@@ -30,24 +30,31 @@
 
       </header>
       <section>
-        <h1>Motivation</h1>
+        <h1>
+<a name="motivation" class="anchor" href="#motivation"><span class="octicon octicon-link"></span></a>Motivation</h1>
 
 <p>Inspired by <a href="http://mightyohm.com/blog/2008/10/building-a-wifi-radio-part-1-introduction/">mightyohms internet radio</a> I decided to build one on my own too. 
-So I build my first radio with an <strong>Asus WL520-GU router</strong> and an <a href="http://www.instructables.com/id/Standalone-WiFi-Radio-Control-Panel-Arduino-Power/">Arduino Ethernet as UI controller</a>. The project has been so much fun that
+So I build my first radio with an <strong>Asus WL520-GU router</strong> and an <a href="http://www.instructables.com/id/Standalone-WiFi-Radio-Control-Panel-Arduino-Power/">Arduino Ethernet as UI controller</a>: 
+<a href="https://github.com/syd711/mephisto_i"><strong>Mephisto I</strong></a>.</p>
+
+<p>The project has been so much fun that
 I decided to build another one, but with a cheaper and more efficient hardware by choosing the <strong>Raspberry Pi</strong>.</p>
 
-<h1>The Name</h1>
+<h1>
+<a name="the-name" class="anchor" href="#the-name"><span class="octicon octicon-link"></span></a>The Name</h1>
 
 <p>Why Mephisto II? Well, my last name means "fist" in German (Faust) and this is the second radio I build, so...</p>
 
-<h1>The Radio Box</h1>
+<h1>
+<a name="the-radio-box" class="anchor" href="#the-radio-box"><span class="octicon octicon-link"></span></a>The Radio Box</h1>
 
 <p>What? Wait? Why starting with the box? Well, I learned from my first project that I neither have the tools nor the room to build a box on my own. So I decided to lookup a possible box first and<br>
 build the radio depending on the design of the choosen box. The radio is a gift for a woman who's got an old-fashioned furniture style, so I bought a <a href="http://www.radiomuseum.org/r/brandt_lw80_lw_80.html">radio box from 1932</a> from ebay and started "hacking".</p>
 
 <p><img src="http://www.paderpoint.net/radio/tn_IMG_6583.JPG" alt="Box 1"><img src="http://www.paderpoint.net/radio/tn_IMG_6584.JPG" alt="Box 2"></p>
 
-<h1>The Hardware</h1>
+<h1>
+<a name="the-hardware" class="anchor" href="#the-hardware"><span class="octicon octicon-link"></span></a>The Hardware</h1>
 
 <p>Components used:</p>
 
@@ -61,13 +68,14 @@ build the radio depending on the design of the choosen box. The radio is a gift 
 <li>2x 74HC595 8 bit shift register</li>
 <li>USB power adapter for the Raspi</li>
 <li>power adapter for the Lepai amp</li>
-<li>a relais that switches the power source for the Raspi once the amp is turned on</li>
+<li>a relay that switches the power source for the Raspi once the amp is turned on</li>
 <li>12x LED for the front display</li>
 <li>1x LED as power indicator on the front (the 3mm hole was already there, so I used this as for a power LED)</li>
 <li>rotary encoder for station selection</li>
 <li>on/off switch</li>
 <li>...and blood, sweat and tears ;)</li>
-</ul><h3>Problems, Solutions and Open Issues (Hardware)</h3>
+</ul><h3>
+<a name="problems-solutions-and-open-issues-hardware" class="anchor" href="#problems-solutions-and-open-issues-hardware"><span class="octicon octicon-link"></span></a>Problems, Solutions and Open Issues (Hardware)</h3>
 
 <ul>
 <li>
@@ -80,7 +88,8 @@ a 50 Ohm resistor on the speaker to reduce the noise. Does someone has a recomme
 <strong>the rotary encoder</strong>: <strong>GRRRRRRR - BIGGEST PAIN EVER</strong>. I was able to get the rotary encoder running on an Arduino Uno. So I translated the Arduino code to python and wired it to the Raspi. After fiddling
 around for hours I wasn't able to get the rotary encoder running the same way. I tried the a <a href="https://github.com/guyc/py-gaugette">pythong rotary encoder library</a> on Github but found contradictorily wiring schemes
 for the rotary encoder. I wired the A/B pins to GPIO ports on the Raspi but it only works on one direction. I wasn't able to fix this problem yet and for me, it's still the biggest bug on the radio.</li>
-</ul><h1>The Software</h1>
+</ul><h1>
+<a name="the-software" class="anchor" href="#the-software"><span class="octicon octicon-link"></span></a>The Software</h1>
 
 <p>With the power of the Raspberry Pi I decided to build a web-interface the user can configure the stations with. 
 Since I already fiddled around with the awesome <strong><a href="http://learn.adafruit.com/webide/overview">Adafruit Web IDE</a></strong>, I decided to use <strong>Python</strong> for the REST service 
@@ -91,7 +100,8 @@ radio could play <strong>all my mp3</strong> as well. So I build an UI for that 
 
 <p><img src="http://www.paderpoint.net/radio/tn_2013-05-24%2019_29_17-Verwaltung.png" alt="Radio Control"><img src="http://www.paderpoint.net/radio/tn_2013-05-24%2019_30_35-Radio%20Verwaltung.png" alt="Radio Control"><img src="http://www.paderpoint.net/radio/tn_2013-05-24%2019_30_04-Google%20Music.png" alt="GMusic Control"></p>
 
-<h3>Problems, Solutions and Open Issues (Software)</h3>
+<h3>
+<a name="problems-solutions-and-open-issues-software" class="anchor" href="#problems-solutions-and-open-issues-software"><span class="octicon octicon-link"></span></a>Problems, Solutions and Open Issues (Software)</h3>
 
 <p>Because this was ...</p>
 
@@ -133,7 +143,8 @@ After using an USB sound card, the command did not work anymore and I wasn't abl
 <li>
 <strong>passing correct stream urls to the UI</strong>: The "New Station" dialog contains a test button for new stream URLs. The URLs may work when configuring the playlist on a PC but may not when added to the mpd playlist.
 A nice solution would be to have some a kind of stream repository that is maintained in the outside world so the user only selected his or her radio stations from a list of predefined stations.</li>
-</ul><h1>Conclusion</h1>
+</ul><h1>
+<a name="conclusion" class="anchor" href="#conclusion"><span class="octicon octicon-link"></span></a>Conclusion</h1>
 
 <p>Once again, it was fun to build an internet radio on my own. And I'm looking forward to "make" my next project, even though I don't know yet what it's gonna be. Here are some additional fotos of the build process:</p>
 
