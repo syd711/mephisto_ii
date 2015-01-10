@@ -1,0 +1,56 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Google Music</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+	<script src="radio-ui.js"></script>
+	<script src="google-ui.js"></script>
+</head>
+<body>
+    
+    
+    
+    
+    <!-- *************************** Player *************************** -->
+    <div id="google_player" data-role="page" data-dom-cache="true">
+    	<div data-role="header">
+			<a href="google.html" data-icon="arrow-l">Zur&uuml;ck</a>
+			<h1></h1>
+            <a href="index.html" onClick="deleteGoogleCredentials()" data-icon="delete">Logout</a>
+		</div>
+		
+		<div data-role="content">
+			<div style="height:120px;">
+				<img src="" id="player-cover" style="height:80px;border:1px solid #021a40;"></img>	
+                <div style="margin-top:-110px;margin-left:100px;">
+    			    <h2 id="player-album"></h2>
+				    <p><strong id="player-artist"></strong></p>
+    				<p style="margin-top:-15px;font-size: 14px;" id="player-year"></p>
+			    </div>
+			</div>
+			
+		
+    		<ul id="google-play-list" data-role="listview" data-filter="false" data-theme="c">
+			</ul>
+    	</div>
+        
+        <div data-role="footer" data-position="fixed">
+            <div style="text-align:center;">
+                <span><a href="#" onClick="playerAction('prev')"><img src="img/next.png" alt="Zur&uuml;ck" /></a></span>
+                <span><a href="#" onClick="stopPlayer()"><img id="stop-button-icon" src="img/stop.png" alt="Stop" /></a></span>
+                <span><a href="#" onClick="startPlayer()"><img id="play-button-icon" src="img/play.png" alt="Abspielen" /></a></span>
+                <span><a href="#" onClick="playerAction('next')"><img src="img/prev.png" alt="Weiter" /></a></span>    
+            </div>
+        </div>
+	</div>
+    <!-- *************************** /Player *************************** -->
+    
+    
+    
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Google Music</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+	<script src="radio-ui.js"></script>
+	<script src="google-ui.js"></script>
+</head>
+<body>
+
+	<!-- *************************** Playlist admin *********************** -->
+    <div id="google" data-role="page" data-dom-cache="true">
+    	<div data-role="header">
+    		<a href="index.html" onClick="stopPlayer()" data-icon="home">Hautmen&uuml;</a>
+    		<h1></h1>
+            <a href="index.html" onClick="deleteGoogleCredentials()" data-icon="delete">Logout</a>     
+    	</div>
+        <div data-role="content">
+	        <div style="text-align:center;height:60px;">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="google-control">
+				        <input onClick="loadAlbums()"  type="radio" name="radio-choice-b" id="google-control-albums" value="list">
+				        <label for="google-control-albums">Alben</label>
+				        <input onClick="loadArtists()" type="radio" name="radio-choice-b" id="google-control-artists" value="grid">
+				        <label for="google-control-artists">Interpreten</label>
+				        <!--input onClick="loadTitles()" type="radio" name="radio-choice-b" id="radio-choice-e" value="gallery">
+				        <label for="radio-choice-e">Titel</label-->
+				</fieldset>
+	        </div>
+	        
+	        <ul id="google-data-list" data-autodividers="true" data-filter="true" data-role="listview" data-filter="false" data-theme="c">
+			</ul>
+        </div>
+    </div>
+    <!-- *************************** /Playlist admin ****************** -->
+        
+</body>
+</html>
