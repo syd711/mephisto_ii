@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>callete</groupId>
+    <artifactId>mephisto_ii</artifactId>
+    <version>0.1-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <callete.version>0.1-SNAPSHOT</callete.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <slf4jVersion>1.6.1</slf4jVersion>
+        <logback.version>1.1.2</logback.version>
+        <exec.plugin.version>1.3.2</exec.plugin.version>
+        <dependency.plugin.version>2.9</dependency.plugin.version>
+        <javampd.version>5.0.0</javampd.version>
+        <deployment.archive.directory>${project.build.directory}/deployment-archiver</deployment.archive.directory>
+        <main.class>de.callete.mephisto2.Mephisto2</main.class>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Generates the executable jar -->
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>${main.class}</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <!-- Plugin to retrieve all jars and copy them to the libs folder for archiving -->
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>${dependency.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>copy-dependencies</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${deployment.archive.directory}/libs</outputDirectory>
+                                    <overWriteReleases>true</overWriteReleases>
+                                    <overWriteSnapshots>true</overWriteSnapshots>
+                                    <overWriteIfNewer>true</overWriteIfNewer>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>${exec.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <mainClass>callete.deployment.client.DeploymentClient</mainClass>
+                                    <arguments>
+                                        <argument>${artifactId}</argument>
+                                        <argument>${version}</argument>
+                                        <!-- Quick deployment, set to true if only the main archive should be copied -->
+                                        <argument>false</argument>
+                                        <!-- The target directory the archive is created from -->
+                                        <argument>${deployment.archive.directory}</argument>
+                                        <!-- The main class to execute from the resolved main archive -->
+                                        <argument>${main.class}</argument>
+                                        <!-- The target OS, use windows or linux here-->
+                                        <argument>linux</argument>
+                                        <!-- Resource folders of the root project path to include in the deployment -->
+                                        <argument>conf</argument>
+                                        <!-- Java Executable -->
+                                        <argument>/opt/jdk1.8.0_06/bin/java</argument>
+                                        <!-- Enable JMX remote debuggin on port 1100 -->
+                                        <argument>false</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>callete</groupId>
+            <artifactId>callete-api-impl</artifactId>
+            <version>${callete.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>callete</groupId>
+            <artifactId>callete-deployment</artifactId>
+            <version>${callete.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.thejavashop</groupId>
+            <artifactId>javampd</artifactId>
+            <version>${javampd.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+</project>
