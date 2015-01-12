@@ -37,6 +37,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
+                                    <addClasspath>true</addClasspath>
                                     <mainClass>${main.class}</mainClass>
                                 </manifest>
                             </archive>
@@ -90,7 +91,7 @@
                                         <argument>conf</argument>
                                         <!-- Java Executable -->
                                         <argument>/opt/jdk1.8.0_06/bin/java</argument>
-                                        <!-- Enable JMX remote debuggin on port 1100 -->
+                                        <!-- Enable JMX remote debugging on port 1100 -->
                                         <argument>false</argument>
                                     </arguments>
                                 </configuration>
