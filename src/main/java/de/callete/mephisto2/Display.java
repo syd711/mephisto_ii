@@ -19,13 +19,36 @@ public class Display {
   }
 
   public void enableLed(int index) {
-    LOG.info("Writing states for index " + index);
+    LOG.debug("Writing states for index " + index);
     shiftRegister.clearRegisters();
     shiftRegister.writeRegisters();
     shiftRegister.setRegisterPin(index, PinState.HIGH);
     shiftRegister.writeRegisters();
   }
+  
+  public void setHotSpotMode() {
+    shiftRegister.clearRegisters();
+    shiftRegister.writeRegisters();
+    shiftRegister.setRegisterPin(4, PinState.HIGH);
+    shiftRegister.setRegisterPin(5, PinState.HIGH);
+    shiftRegister.setRegisterPin(6, PinState.HIGH);
+    shiftRegister.setRegisterPin(7, PinState.HIGH);
+    shiftRegister.setRegisterPin(8, PinState.HIGH);
+    shiftRegister.writeRegisters();
+  }
 
+  public void setStartupMode() {
+    shiftRegister.clearRegisters();
+    shiftRegister.writeRegisters();
+    shiftRegister.setRegisterPin(9, PinState.HIGH);
+    shiftRegister.setRegisterPin(10, PinState.HIGH);
+    shiftRegister.setRegisterPin(11, PinState.HIGH);
+    shiftRegister.setRegisterPin(12, PinState.HIGH);
+    shiftRegister.setRegisterPin(13, PinState.HIGH);
+    shiftRegister.setRegisterPin(14, PinState.HIGH);
+    shiftRegister.setRegisterPin(15, PinState.HIGH);
+    shiftRegister.writeRegisters();
+  }
 
   //-------------- Helper ---------------------------------------
 

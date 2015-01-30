@@ -80,7 +80,7 @@
                                         <argument>${artifactId}</argument>
                                         <argument>${version}</argument>
                                         <!-- Quick deployment, set to true if only the main archive should be copied -->
-                                        <argument>false</argument>
+                                        <argument>true</argument>
                                         <!-- The target directory the archive is created from -->
                                         <argument>${deployment.archive.directory}</argument>
                                         <!-- The main class to execute from the resolved main archive -->

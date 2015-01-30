@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Radio Verwaltung</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+<script src="radio-ui.js"></script>
+<script src="settings.js"></script>
+<style type="text/css">
+<!--
+.playing { 
+   background-image: url(img/playing.gif); 
+   background-repeat: no-repeat; 
+} 
+-->
+</style>
+</head>
+<body>
+
+
+	<!-- *****************************  Main *****************************************************************************-->
+	<div data-role="page" id="stations-page">
+
+		<div data-role="header">
+			<h1>Verwaltung</h1>
+		</div>
+		<!-- /header -->
+
+		<div data-role="content">
+			<h3>Gespeicherte Stationen</h3>
+			<table data-role="table" id="table-stations" data-column-popup-theme="a" data-mode="reflow" class="ui-responsive table-stroke ui-body-c">
+				<thead class="ui-bar-d">
+				<tr>
+					<th data-priority="1">Position</th>
+					<th data-priority="2">Action</th>
+					<th>Name</th>
+					<th data-priority="4">Letzte Wiedergabe</th>
+					<th data-priority="3"></th>
+				</tr>
+				</thead>
+				<tbody id="stations-list">
+				</tbody>
+			</table>
+			<a data-mini="false" href="#stations-page" data-inline="true" data-role="button"
+			   onClick="reloadStations()"
+			   id="stations-reload-btn"
+			   data-icon="refresh" data-theme="b">Stations&uuml;bersicht neu laden</a>
+		</div>
+
+		<!-- /content -->
+
+	</div>
+	<!-- ***************************** /Main *****************************************************************************-->
+
+
+
+	<input type="hidden" name="station-id" id="station-id" />
+    <input type="hidden" name="station-test-url" id="station-test-url" />
+    
+    
+
+<script>
+	loadStations();
+</script>
+</body>
+</html>
