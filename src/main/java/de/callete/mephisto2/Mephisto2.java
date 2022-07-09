@@ -2,7 +2,6 @@ package de.callete.mephisto2;
 
 import callete.api.Callete;
 import callete.api.services.network.HotSpot;
-import jdk.nashorn.internal.codegen.CompilerConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,21 +20,17 @@ public class Mephisto2 {
   private InputController inputController;
 
   public static Mephisto2 getInstance() {
-    return instance;    
+    return instance;
   }
 
   private void init() throws IOException, IllegalAccessException {
     LOG.info("Starting Mephisto II");
-    LOG.info("Connecting Display");
-    display = new Display();
 
     LOG.info("Checking internet connection...");
-    if(!Callete.getNetworkService().isOnline()) {
-      LOG.info("No internet connection found, running setup wizard...");
-      runSetupWizard();
+    if (!Callete.getNetworkService().isOnline()) {
+      LOG.info("No internet connection found, exiting.");
+      System.exit(0);
     }
-    
-    display.setStartupMode();
     LOG.info("Well, internet seems to be working, so start the rest of it...");
 
     LOG.info("Creating Metadata Cache");
@@ -44,27 +39,21 @@ public class Mephisto2 {
     LOG.info("Creating Station Control");
     control = new StationControl();
 
-    LOG.info("Input Controller");
-    inputController = new InputController(control, display);
-    inputController.connect();
-    inputController.startPlayback();
+    if(Callete.getSystemService().isLinux()) {
+      LOG.info("Connecting Display");
+      display = new Display();
+      display.setStartupMode();
+
+      LOG.info("Input Controller");
+      inputController = new InputController(control, display);
+      inputController.connect();
+      inputController.startPlayback();
+    }
 
     Callete.getSystemService().deleteLogs();
 
     //HTTP Server
     startServer();
-  }
-
-  private void runSetupWizard() throws IOException, IllegalAccessException {
-    HotSpot hotSpot = Callete.getNetworkService().createHotSpot("Callete", "callete123", "192.168.2.10");
-    hotSpot.install();
-    hotSpot.start();
-
-    hotSpot.startWLANConfigService(new File("/home/pi/hotspot/"), 8082);
-    display.setHotSpotMode();
-    
-    System.in.read();
-    System.exit(0);
   }
 
   private static void startServer() {
@@ -74,7 +63,9 @@ public class Mephisto2 {
     String[] resourcesLookupPaths = {"de.callete.mephisto2.rest"};
 
     //finally start the HTTP server
-    Callete.getHttpService().startServer(Callete.getConfiguration().getString("deployment.host"), 8080, new File("./ui/"), resourcesLookupPaths);
+    String host = Callete.getConfiguration().getString("deployment.host");
+    host = "127.0.0.1";
+    Callete.getHttpService().startServer(host, 8080, new File("./ui/"), resourcesLookupPaths);
     LOG.info("Http Server started.");
   }
 

@@ -45,12 +45,12 @@ public class StationsRestResource {
     Callete.getMusicPlayer().getPlaylist().setActiveItem(stream);
     Callete.getMusicPlayer().play();
 
-    Mephisto2.getInstance().getInputController().play((pos+1));
-    
+    Mephisto2.getInstance().getInputController().play((pos + 1));
+
     return new Station(stream);
   }
 
-  
+
   @POST
   @Path("/save/{id}")
   public Station saveStation(@PathParam("id") String id, @FormParam("url") String url) {
@@ -68,7 +68,7 @@ public class StationsRestResource {
   @Path("/move/{from}/{to}")
   public Station moveStation(@PathParam("from") String from, @PathParam("to") String to) {
     int fromPos = Integer.parseInt(from);
-    int toPos= Integer.parseInt(to);
+    int toPos = Integer.parseInt(to);
     List<Stream> streams = Callete.getStreamingService().getStreams();
     Stream stream = streams.remove(fromPos);
     streams.add(toPos, stream);

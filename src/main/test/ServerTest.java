@@ -12,11 +12,11 @@ import java.io.IOException;
 public class ServerTest {
   private final static Logger LOG = LoggerFactory.getLogger(Mephisto2.class);
   private static File streamsSettingsFile = new File("./conf/streams.properties");
-  
+
   public static void main(String[] args) throws IOException {
     LOG.info("Starting REST service for UI control");
     Callete.getStreamingService().setConfigFile(streamsSettingsFile);
-    
+
     int serverPort = Callete.getConfiguration().getInt("http.server.port");
     String serverHost = Callete.getConfiguration().getString("deployment.host");
     //the resource directory doesn't really matter here, since we only want to provide a REST service
@@ -28,8 +28,8 @@ public class ServerTest {
     //finally start the HTTP server
     Callete.getHttpService().startServer(serverHost, serverPort, resourceDirectory, resourcesLookupPaths);
     LOG.info("Http Server started.");
-    
+
     System.in.read();
-    
+
   }
 }

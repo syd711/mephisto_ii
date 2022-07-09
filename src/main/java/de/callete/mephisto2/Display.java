@@ -25,7 +25,7 @@ public class Display {
     shiftRegister.setRegisterPin(index, PinState.HIGH);
     shiftRegister.writeRegisters();
   }
-  
+
   public void setHotSpotMode() {
     shiftRegister.clearRegisters();
     shiftRegister.writeRegisters();

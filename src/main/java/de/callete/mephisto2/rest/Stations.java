@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  */
 public class Stations {
   private List<Station> stations = new ArrayList<>();
-  
+
   public Stations() {
     List<Stream> streams = Callete.getStreamingService().getStreams();
-    for(Stream stream : streams) {
+    for (Stream stream : streams) {
       stations.add(new Station(stream));
     }
   }
@@ -25,10 +26,10 @@ public class Stations {
   public void setStations(List<Station> stations) {
     this.stations = stations;
   }
-  
+
   public int getSize() {
     return stations.size();
-    
+
   }
-  
+
 }

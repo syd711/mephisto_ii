@@ -20,7 +20,7 @@ public class InputController {
   private Display display;
 
   private Map<Integer, Integer> station2Streams = new HashMap<>();
-  private Map<Integer, Integer> streams2Stations= new HashMap<>();
+  private Map<Integer, Integer> streams2Stations = new HashMap<>();
 
   public InputController(StationControl control, Display display) {
     this.control = control;
@@ -38,9 +38,9 @@ public class InputController {
     station2Streams.put(6, 10);
     station2Streams.put(5, 11);
     station2Streams.put(4, 12);
-    
 
-    for (Map.Entry<Integer,Integer> entry : station2Streams.entrySet()) {
+
+    for (Map.Entry<Integer, Integer> entry : station2Streams.entrySet()) {
       streams2Stations.put(entry.getValue(), entry.getKey());
     }
   }
@@ -55,16 +55,16 @@ public class InputController {
     rotary.addChangeListener(new RotaryEncoderListener() {
       @Override
       public void rotated(RotaryEncoderEvent event) {
-        if(event.rotatedLeft()) {
+        if (event.rotatedLeft()) {
           stationIndex++;
         }
         else {
           stationIndex--;
         }
-        if(stationIndex < 4) {
+        if (stationIndex < 4) {
           stationIndex = 15;
         }
-        if(stationIndex > 15) {
+        if (stationIndex > 15) {
           stationIndex = 4;
         }
         display.enableLed(stationIndex);
@@ -76,7 +76,7 @@ public class InputController {
     pushButton.addPushListener(new PushListener() {
       @Override
       public void pushed(PushEvent e) {
-        if(e.isLongPush()) {
+        if (e.isLongPush()) {
           LOG.info("Detected long push event.");
         }
         else {
@@ -104,7 +104,7 @@ public class InputController {
     stationIndex = streams2Stations.get(pos);
     playSelection();
   }
-  
+
   public void play(int streamIndex) {
     stationIndex = streams2Stations.get(streamIndex);
     control.playAt(streamIndex);

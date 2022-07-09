@@ -22,13 +22,13 @@ public class StationControl {
     streams = Callete.getStreamingService().getStreams();
     Callete.getMusicPlayer().enableMonitoring(false);
   }
-  
+
   public void refresh() {
     streams = Callete.getStreamingService().getStreams();
   }
 
   public void playAt(int pos) {
-    int index = pos-1;
+    int index = pos - 1;
     Stream stream = streams.get(index);
     LOG.info("Starting playback of " + stream);
     Callete.getMusicPlayer().getPlaylist().clear();
