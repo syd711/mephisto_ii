@@ -1,7 +1,8 @@
 Mephisto II
 ===========
 
-##Deployment
+Deployment
+--------
 
 Make sure that the deployment server is started on the raspberry.
 Then run:
@@ -9,7 +10,8 @@ Then run:
 __mvn clean install -Pdeploy__
 
 
-##UI
+UI
+--------
 
 Ensure to invoke the whole path to the index.html, e.g. __http://127.0.0.1:8080/resources/index.html__
 
@@ -18,7 +20,8 @@ Ensure to invoke the whole path to the index.html, e.g. __http://127.0.0.1:8080/
 
 # About This Project
 
-##Motivation
+Motivation
+--------
 Inspired by mightyohms internet radio I decided to build one on my own too. 
 So I build my first radio with an Asus WL520-GU router and an Arduino Ethernet as UI controller: Mephisto I.
 
@@ -31,9 +34,11 @@ by choosing the Raspberry Pi.
 
 <img src="docs/2013-05-26 12.51.12.jpg" width="400">
 
+The finished radio.
 
 
-##The Name
+The Name
+--------
 Why Mephisto II? Well, my last name means "fist" in German (Faust) and this is the second radio I build, so...
 
 ##The Radio Box
@@ -63,7 +68,8 @@ rotary encoder for station selection
 - ...and blood, sweat and tears ;)
 
  
-##Problems, Solutions and Open Issues (Hardware)
+Problems, Solutions and Open Issues (Hardware)
+--------
 the Raspberry Pi GPIO ports: Because of the limited space on the front side, I decided to provide a display 
 where the user can select one of twelve stations. Using 3mm LEDs this was the amount of LEDs that fit into the front hole. 
 The problem was that Raspi does not have that many GPIO ports, so I found this awesome article for the Arduino that did the trick.
@@ -84,11 +90,8 @@ I achieved the desired results in really short time. So I decided to give the ra
 I stumbled over the gmusic-python API on github and decided that it would be nice if the radio could play all my mp3 as well. 
 So I build an UI for that too. You can see some screenshots below. The UI is in German, but I think you get the idea.
 
-#Problems, Solutions and Open Issues (Software)
-Because this was ...
-
-- my first Raspberry Pi project
-the first time I used jquery-mobile (jquery at all)
+Problems, Solutions and Open Issues (Software)
+--------
 I stumbled over some problems. Some of them I could solve, some of them remained unsolved. I want to share my knowledge here (and hopefully get some answers to my questions too). Here is a short overview about the main problems I faced building the software for the radio.
 radio remote control: The UI supports a remote control for the radio so that the next or previous station can be selected. Maybe it would be better here to let the user choose a station directly. Unfortunatly the LEDs for the station status are not updated when the station is changed via remote control.
 radio remote volume control: In a first version I was able to control the radio volume control via UI with a jquery-mobile slider component. The slider change did result in a mpc volume command on the server side. After using an USB sound card, the command did not work anymore and I wasn't able to get it running again. The UI component is still there, but commented out in the HTML.
