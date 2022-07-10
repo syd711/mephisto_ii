@@ -42,6 +42,7 @@ The Name
 Why Mephisto II? Well, my last name means "fist" in German (Faust) and this is the second radio I build, so...
 
 ##The Radio Box
+
 What? Wait? Why starting with the box? Well, I learned from my first project that I neither have the tools nor the room 
 to build a box on my own. So I decided to lookup a possible box first and
 build the radio depending on the design of the choosen box. 
