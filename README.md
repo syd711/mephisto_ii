@@ -49,8 +49,7 @@ build the radio depending on the design of the choosen box.
 The radio is a gift for a woman who's got an old-fashioned furniture style, 
 so I bought a radio box from 1932 from ebay and started "hacking".
 
-##The Hardware
-Components used:
+## Components Used
 
 - Radio box
 - Raspberry Pi
