@@ -25,9 +25,11 @@ So I build my first radio with an Asus WL520-GU router and an Arduino Ethernet a
 The project has been so much fun that I decided to build another one, but with a cheaper and more efficient hardware 
 by choosing the Raspberry Pi.
 
-<img src="docs/1.jpg" width="200">
+<img src="docs/2013-05-24 11.45.14.jpg" width="400">
 
-![cabinet1](docs/2013-05-24 11.45.14.jpg)
+<img src="docs/2013-05-24 11.45.44.jpg" width="400">
+
+<img src="docs/2013-05-26 12.51.12.jpg" width="400">
 
 
 
