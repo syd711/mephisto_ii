@@ -90,7 +90,7 @@
                                         <!-- Resource folders of the root project path to include in the deployment -->
                                         <argument>conf</argument>
                                         <!-- Java Executable -->
-                                        <argument>/opt/jdk1.8.0_06/bin/java</argument>
+                                        <argument>/usr/lib/jvm/default-java/bin/java</argument>
                                         <!-- Enable JMX remote debugging on port 1100 -->
                                         <argument>false</argument>
                                     </arguments>
