@@ -77,10 +77,10 @@
                                 <configuration>
                                     <mainClass>callete.deployment.client.DeploymentClient</mainClass>
                                     <arguments>
-                                        <argument>${artifactId}</argument>
-                                        <argument>${version}</argument>
+                                        <argument>${project.artifactId}</argument>
+                                        <argument>${project.version}</argument>
                                         <!-- Quick deployment, set to true if only the main archive should be copied -->
-                                        <argument>true</argument>
+                                        <argument>false</argument>
                                         <!-- The target directory the archive is created from -->
                                         <argument>${deployment.archive.directory}</argument>
                                         <!-- The main class to execute from the resolved main archive -->

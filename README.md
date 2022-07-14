@@ -4,7 +4,11 @@ Mephisto II
 Deployment
 --------
 
-Make sure that the deployment server is started on the raspberry.
+- Make sure that the deployment server is started on the raspberry.
+- Check the callete.properties for the target system.
+- Check the details of root pom.xml for the DeploymentArchiver.
+
+
 Then run:
 
 __mvn clean install -Pdeploy__
