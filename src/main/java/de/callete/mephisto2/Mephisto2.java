@@ -64,7 +64,6 @@ public class Mephisto2 {
 
     //finally start the HTTP server
     String host = Callete.getConfiguration().getString("deployment.host");
-    host = "127.0.0.1";
     Callete.getHttpService().startServer(host, 8080, new File("./ui/"), resourcesLookupPaths);
     LOG.info("Http Server started.");
   }

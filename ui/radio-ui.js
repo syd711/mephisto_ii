@@ -53,7 +53,7 @@ function loadStations() {
 				}
 				
 				html+='</td>';
-				html+='<td style="vertical-align: middle;"><a class="ui-link-inherit" style="font-weight:bold;" onClick="editStation(' + value[i].id + ')" id="station-details-edit-' + value[i].id + '" href="#station-details-page" datatheme="e">' + name + '</a></td>';
+				html+='<td style="vertical-align: middle;"><a class="ui-link-inherit" style="font-weight:bold;" onClick="editStation(' + value[i].id + ')" id="station-details-edit-' + value[i].id + '" href="#station-details-page" datatheme="e">+' + name + '</a></td>';
 				html+='<td style="vertical-align: middle;">' + title + '</td>';
 				html+='<td style="vertical-align: middle;">';
 				html+='	 <a id="play-' + i + '" href="#" onClick="playStation(' + i + ')" data-role="button" data-icon="gear" data-iconpos="notext" data-theme="c" data-inline="true"></a>';
