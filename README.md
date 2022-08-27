@@ -4,7 +4,9 @@ Mephisto II
 Deployment
 --------
 
-- Make sure that the deployment server is started on the raspberry.
+- Clone https://github.com/syd711/callete.git into the homefolder of your pi.
+- Invoke the __make.sh__ script 
+- Start the deployment server: __~/callete/callete-deployment $ ./startServer.sh__
 - Check the callete.properties for the target system.
 - Check the details of root pom.xml for the DeploymentArchiver.
 
@@ -17,8 +19,15 @@ __mvn clean install -Pdeploy__
 UI
 --------
 
-Ensure to invoke the whole path to the index.html, e.g. __http://127.0.0.1:8080/resources/index.html__
+Ensure to invoke the whole path to the __index.html__ (!!!), e.g. __http://127.0.0.1:8080/resources/index.html__
 
+Wiring 
+--------
+
+Note that the pins set in the __callete.properties__ match the pin number, not the GPIO numbers.
+E.g. pin #3 is GPIO 3.
+
+![](docs/rp2_pinout.png)
 
 
 
@@ -32,11 +41,10 @@ So I build my first radio with an Asus WL520-GU router and an Arduino Ethernet a
 The project has been so much fun that I decided to build another one, but with a cheaper and more efficient hardware 
 by choosing the Raspberry Pi.
 
-<img src="docs/2013-05-24 11.45.14.jpg" width="400">
+![](docs/2013-05-24 11.45.14.jpg)
+![](docs/2013-05-24 11.45.44.jpg)
+![](docs/2013-05-26 12.51.12.jpg)
 
-<img src="docs/2013-05-24 11.45.44.jpg" width="400">
-
-<img src="docs/2013-05-26 12.51.12.jpg" width="400">
 
 The finished radio.
 
