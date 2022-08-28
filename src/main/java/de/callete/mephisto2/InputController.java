@@ -49,9 +49,8 @@ public class InputController {
     rotary.addChangeListener(new RotaryEncoderListener() {
       @Override
       public void rotated(RotaryEncoderEvent event) {
-        if (event.rotatedLeft()) {
-          stationIndex++;
-        }
+        stationIndex++;
+
 //        else {
 //          stationIndex--;
 //        }

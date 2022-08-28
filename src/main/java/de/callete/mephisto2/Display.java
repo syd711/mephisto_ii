@@ -27,41 +27,21 @@ public class Display {
   }
 
   public void setStartupMode() {
-//    try {
-//      setPin(3);
-//      Thread.sleep(2000);
-//      setPin(4);
-//      Thread.sleep(2000);
-//      setPin(5);
-//      Thread.sleep(2000);
-//      setPin(6);
-//      Thread.sleep(2000);
-//      setPin(7);
-//      Thread.sleep(2000);
-//      setPin(8);
-//      Thread.sleep(2000);
-//      setPin(9);
-//      Thread.sleep(2000);
-//      setPin(10);
-//      Thread.sleep(2000);
-//      setPin(11);
-//      Thread.sleep(2000);
-//      setPin(13);
-//      Thread.sleep(2000);
-//      setPin(14);
-//      Thread.sleep(2000);
-//      setPin(15);
-//    } catch (InterruptedException e) {
-//      e.printStackTrace();
-//    }
-  }
-
-  private void setPin(int pin) {
-    LOG.info("Setting pin " + pin);
-    shiftRegister.clearRegisters();
-    shiftRegister.writeRegisters();
-    shiftRegister.setRegisterPin(pin, PinState.HIGH);
-    shiftRegister.writeRegisters();
+      shiftRegister.clearRegisters();
+      shiftRegister.writeRegisters();
+      shiftRegister.setRegisterPin(3, PinState.HIGH);
+      shiftRegister.setRegisterPin(4, PinState.HIGH);
+      shiftRegister.setRegisterPin(5, PinState.HIGH);
+      shiftRegister.setRegisterPin(6, PinState.HIGH);
+      shiftRegister.setRegisterPin(7, PinState.HIGH);
+      shiftRegister.setRegisterPin(8, PinState.HIGH);
+      shiftRegister.setRegisterPin(9, PinState.HIGH);
+      shiftRegister.setRegisterPin(10, PinState.HIGH);
+      shiftRegister.setRegisterPin(11, PinState.HIGH);
+      shiftRegister.setRegisterPin(13, PinState.HIGH);
+      shiftRegister.setRegisterPin(14, PinState.HIGH);
+      shiftRegister.setRegisterPin(15, PinState.HIGH);
+      shiftRegister.writeRegisters();
   }
 
   //-------------- Helper ---------------------------------------
