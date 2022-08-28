@@ -1,7 +1,6 @@
 package de.callete.mephisto2;
 
 import callete.api.Callete;
-import callete.api.services.network.HotSpot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

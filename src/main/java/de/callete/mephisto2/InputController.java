@@ -15,34 +15,28 @@ public class InputController {
   private final static Logger LOG = LoggerFactory.getLogger(InputController.class);
   public static final String SELECTED_STATION = "selected.station";
 
-  private int stationIndex = 15;
+  private int stationIndex = 1;
   private StationControl control;
   private Display display;
 
   private Map<Integer, Integer> station2Streams = new HashMap<>();
-  private Map<Integer, Integer> streams2Stations = new HashMap<>();
 
   public InputController(StationControl control, Display display) {
     this.control = control;
     this.display = display;
 
-    station2Streams.put(15, 1);
-    station2Streams.put(14, 2);
-    station2Streams.put(13, 3);
-    station2Streams.put(12, 4);
-    station2Streams.put(11, 5);
+    station2Streams.put(1, 10);
+    station2Streams.put(2, 9);
+    station2Streams.put(3, 8);
+    station2Streams.put(4, 3);
+    station2Streams.put(5, 7);
+    station2Streams.put(6, 15);
+    station2Streams.put(7, 14);
+    station2Streams.put(8, 13);
+    station2Streams.put(9, 11);
     station2Streams.put(10, 6);
-    station2Streams.put(9, 7);
-    station2Streams.put(8, 8);
-    station2Streams.put(7, 9);
-    station2Streams.put(6, 10);
-    station2Streams.put(5, 11);
-    station2Streams.put(4, 12);
-
-
-    for (Map.Entry<Integer, Integer> entry : station2Streams.entrySet()) {
-      streams2Stations.put(entry.getValue(), entry.getKey());
-    }
+    station2Streams.put(11, 5);
+    station2Streams.put(12, 4);
   }
 
   public void connect() {
@@ -50,7 +44,7 @@ public class InputController {
     int pinA = Callete.getConfiguration().getInt("rotary_encoder_A");
     int pinB = Callete.getConfiguration().getInt("rotary_encoder_B");
 
-    RotaryEncoder rotary = gpioService.connectRotaryEncoder(pinA, pinB, "rotary");
+    RotaryEncoder rotary = gpioService.connectRotaryEncoder(pinA, pinB, "rotary", RotaryEncoder.ENCODING_MODE.MANUAL);
     rotary.setIgnoreHalfSteps(true);
     rotary.addChangeListener(new RotaryEncoderListener() {
       @Override
@@ -58,16 +52,18 @@ public class InputController {
         if (event.rotatedLeft()) {
           stationIndex++;
         }
-        else {
-          stationIndex--;
+//        else {
+//          stationIndex--;
+//        }
+        if (stationIndex < 0) {
+          stationIndex = 12;
         }
-        if (stationIndex < 4) {
-          stationIndex = 15;
+        if (stationIndex > 12) {
+          stationIndex = 1;
         }
-        if (stationIndex > 15) {
-          stationIndex = 4;
-        }
-        display.enableLed(stationIndex);
+
+        int led = station2Streams.get(stationIndex);
+        display.enableLed(led);
       }
     });
 
@@ -99,23 +95,23 @@ public class InputController {
   }
 
   public void startPlayback() {
-    int pos = Callete.getSettings().getInt(SELECTED_STATION, 1);
-    LOG.info("Starting playback on position " + pos);
-    stationIndex = streams2Stations.get(pos);
+    stationIndex = Callete.getSettings().getInt(SELECTED_STATION, 1);
+    LOG.info("Starting playback on position " + stationIndex);
     playSelection();
   }
 
   public void play(int streamIndex) {
-    stationIndex = streams2Stations.get(streamIndex);
     control.playAt(streamIndex);
-    display.enableLed(stationIndex);
+
+    int led = station2Streams.get(stationIndex);
+    display.enableLed(led);
     Callete.saveSetting(SELECTED_STATION, streamIndex);
   }
 
   private void playSelection() {
-    int streamIndex = station2Streams.get(stationIndex);
-    control.playAt(streamIndex);
-    display.enableLed(stationIndex);
-    Callete.saveSetting(SELECTED_STATION, streamIndex);
+    control.playAt(stationIndex);
+    int led = station2Streams.get(stationIndex);
+    display.enableLed(led);
+    Callete.saveSetting(SELECTED_STATION, stationIndex);
   }
 }

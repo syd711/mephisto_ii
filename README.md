@@ -29,6 +29,7 @@ E.g. pin #3 is GPIO 3.
 
 ![](docs/rp2_pinout.png)
 
+Pin 2 and pin 6 are used for +5V and GND. Check the '+' and '-' symbol on the cobbler board to see the connections.
 
 
 # About This Project
@@ -41,9 +42,11 @@ So I build my first radio with an Asus WL520-GU router and an Arduino Ethernet a
 The project has been so much fun that I decided to build another one, but with a cheaper and more efficient hardware 
 by choosing the Raspberry Pi.
 
-![](docs/2013-05-24 11.45.14.jpg)
-![](docs/2013-05-24 11.45.44.jpg)
-![](docs/2013-05-26 12.51.12.jpg)
+![](docs/cabinet.jpg)
+
+![](docs/1.jpg)
+![](docs/2.jpg)
+![](docs/4.jpg)
 
 
 The finished radio.
